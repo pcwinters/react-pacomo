@@ -203,7 +203,7 @@ describe('#render', () => {
     )
 
     assert.equal(
-      rendered.props.children[0].props.__pacomoSkip,
+      rendered.props.children.props.__pacomoSkip,
       true
     )
   })
@@ -248,7 +248,7 @@ describe('stateless render', () => {
     )
 
     assert.equal(
-      rendered.props.children[0].props.__pacomoSkip,
+      rendered.props.children.props.__pacomoSkip,
       true
     )
   })

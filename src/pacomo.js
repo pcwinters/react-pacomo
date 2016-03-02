@@ -64,11 +64,12 @@ function transformElementProps(props, fn, childrenOnly) {
   const changes = {}
 
   if (typeof props.children === 'object') {
+    const isArray = Array.isArray(props.children);
     const children = Children.toArray(props.children)
     const transformedChildren = children.map(fn)
 
     if (transformedChildren.some((transformed, i) => transformed != children[i])) {
-      changes.children = transformedChildren
+      changes.children = isArray ? transformedChildren : transformedChildren[0];
     }
   }
 
