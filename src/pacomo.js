@@ -97,8 +97,8 @@ export function transformWithPrefix(strategy, componentFunction) {
   // Prefix all `className` props on the passed in ReactElement object, its
   // children, and elements on `props`.
   //
-  // Optionally prefix with a `rootClass` and postfix with `suffixClass`.
-  function transform(element, rootClass, suffixClasses='') {
+  // Optionally prefix with a `rootClass` and postfix with `suffixClasses`.
+  function transform(element, rootClass, suffixClasses) {
     if (typeof element !== 'object' || element.props.__pacomoSkip) return element
 
     const changes = transformElementProps(
@@ -107,11 +107,15 @@ export function transformWithPrefix(strategy, componentFunction) {
       typeof element.type !== 'function'
     )
 
-    if (element.props.className) {
-      changes.className = `${rootClass || ''} ${prefixedClassNames(strategy, componentFunction, element.props.className)} ${suffixClasses}`
+    // make any necessary class name updates
+    let prefixedClassName = null;
+    const elClassName = element.props.className;
+    if (elClassName) {
+        prefixedClassName = prefixedClassNames(strategy, componentFunction, elClassName);
     }
-    else if (rootClass) {
-      changes.className = `${rootClass} ${suffixClasses}`
+    let newClassNames = classNames(rootClass, prefixedClassName, suffixClasses);
+    if (newClassNames.length > 0) {
+        changes.className = newClassNames;
     }
 
     return (
@@ -142,7 +146,7 @@ export function withStrategy(strategy) {
           props.className
         )
 
-      transformedComponent.displayName = `pacomo(${componentName})`
+      transformedComponent.displayName = `Pacomo(${componentName})`
 
       // Add `className` propType, if none exists
       transformedComponent.propTypes = { className: PropTypes.string, ...componentFunction.propTypes }
@@ -166,7 +170,7 @@ export function withStrategy(strategy) {
         }
       }
 
-      DecoratedComponent.displayName = `pacomo(${componentName})`
+      DecoratedComponent.displayName = `Pacomo(${componentName})`
 
       return DecoratedComponent
     },

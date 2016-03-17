@@ -174,7 +174,7 @@ describe('#render', () => {
 
     assert.equal(
       rendered.props.className,
-      'prefix-FullComponent  passedIn'
+      'prefix-FullComponent passedIn'
     )
   })
 
@@ -219,7 +219,7 @@ describe('stateless render', () => {
 
     assert.equal(
       rendered.props.className,
-      'prefix-FullStatelessComponent  passedIn'
+      'prefix-FullStatelessComponent passedIn'
     )
   })
 
@@ -300,7 +300,7 @@ describe('transformWithPrefix', () => {
 
     assert.equal(
       transformed.props.className,
-      ' test-nav '
+      'test-nav'
     )
   })
 
@@ -309,11 +309,11 @@ describe('transformWithPrefix', () => {
 
     assert.equal(
       transformed.props.children[0].props.className,
-      ' test-link1 test-active '
+      'test-link1 test-active'
     )
     assert.equal(
       transformed.props.children[1].props.className,
-      ' test-link2 '
+      'test-link2'
     )
   })
 
@@ -322,7 +322,7 @@ describe('transformWithPrefix', () => {
 
     assert.equal(
       transformed.props.children[0].props.focusable.props.className,
-      ' test-Link '
+      'test-Link'
     )
   })
 
