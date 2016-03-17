@@ -1,6 +1,6 @@
 {
   "name": "@bronto/react-pacomo",
-    "version": "0.5.2-rc2",
+  "version": "0.5.2-rc3",
   "description": "Provide structure to your component's CSS.",
   "main": "lib/pacomo.js",
   "scripts": {
