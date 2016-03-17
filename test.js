@@ -1,6 +1,5 @@
 import 'babel-polyfill'
 import {
-    PacomoStrategy,
     prefixedClassNames,
     withPackageName,
     transformWithPrefix
